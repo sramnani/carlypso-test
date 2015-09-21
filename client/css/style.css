@@ -5,6 +5,19 @@
     border :1px solid rgba(101,101,101,.1);
 }
 
-.carCard {
+.price {
+  font-size:28px;
+  text-align:center;
+}
 
+.miles {
+    font-size:20px;
+    text-align:center;
+    color:gray;
+}
+.model {
+    font-size:20px;
+    text-align:center;
+    color:gray;
+    margin-top:10px;
 }
