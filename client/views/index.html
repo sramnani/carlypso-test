@@ -1,1 +1,46 @@
-<html>welcome</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Carlypso</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+</head>
+<body ng-app = "app" ng-controller="carsController">
+<div class="container">
+    <header>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand"><img src="//d29uzrms85oiw4.cloudfront.net/images/carlypso_logo.png" width="168" height="auto"></a>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+    <div class="row">
+        <div class="col-sm-4">
+            {{cars}}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/components/angular/angular.js"></script>
+<script type="text/javascript" src="/components/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/components/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="/components/angular-bootstrap/ui-bootstrap.js"></script>
+
+<script src="/js/app.js"></script>
+<script src="js/controllers/carsController.js"></script>
+
+
+
+
+</body>
+</html>
