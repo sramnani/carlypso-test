@@ -6,7 +6,6 @@ var express           = require('express'),
     listCountUri      = "http://interview.carlypso.com/count"
     listCount         = {};
     listingItems      = {};
-
 app.use(bodyParser());
 
 

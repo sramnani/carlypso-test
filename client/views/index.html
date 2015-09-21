@@ -7,29 +7,73 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="/css/style.css" rel="stylesheet">
 
 
 </head>
-<body ng-app = "app" ng-controller="carsController">
-<div class="container">
-    <header>
+<div ng-app="app" ng-controller="carsController">
+    <div class="container">
+
         <nav class="navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand"><img src="//d29uzrms85oiw4.cloudfront.net/images/carlypso_logo.png" width="168" height="auto"></a>
+                    <a class="navbar-brand"><img src="//d29uzrms85oiw4.cloudfront.net/images/carlypso_logo.png"
+                                                 width="168" height="auto"></a>
                 </div>
             </div>
 
         </nav>
-    </header>
-    <div class="row">
-        <div class="col-sm-4">
-            {{cars}}
+
+        <div class="carList" ng-repeat="car in cars">
+            <div class="row">
+                <div class="col-sm-3 carCard">
+                    <div class="clearfix">
+                        <div class="carImg"><img
+                                ng-src="https://s3-us-west-1.amazonaws.com/carlypso-shop2/v2/1e6ktkybsb/gray/retina-gz.jpg"
+                                width="100%"
+                                src="https://s3-us-west-1.amazonaws.com/carlypso-shop2/v2/1e6ktkybsb/gray/retina-gz.jpg">
+                        </div>
+                        <div class="price">{{car.price}}</div>
+                    </div>
+                </div>
+                <div class="col-sm-3 carCard">
+                    <div class="clearfix">
+                        <div class="carImg"><img
+                                ng-src="https://s3-us-west-1.amazonaws.com/carlypso-shop2/v2/1e6ktkybsb/gray/retina-gz.jpg"
+                                width="100%"
+                                src="https://s3-us-west-1.amazonaws.com/carlypso-shop2/v2/1e6ktkybsb/gray/retina-gz.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3 carCard">
+                    <div class="clearfix">
+                        <div class="carImg"><img
+                                ng-src="https://s3-us-west-1.amazonaws.com/carlypso-shop2/v2/1e6ktkybsb/gray/retina-gz.jpg"
+                                width="100%"
+                                src="https://s3-us-west-1.amazonaws.com/carlypso-shop2/v2/1e6ktkybsb/gray/retina-gz.jpg">
+                            <div class="price">130,000</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-3 carCard">
+                    <div class="clearfix">
+                        <div class="carImg"><img
+                                ng-src="https://s3-us-west-1.amazonaws.com/carlypso-shop2/v2/1e6ktkybsb/gray/retina-gz.jpg"
+                                width="100%"
+                                src="https://s3-us-west-1.amazonaws.com/carlypso-shop2/v2/1e6ktkybsb/gray/retina-gz.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 <script type="text/javascript" src="/components/angular/angular.js"></script>
 <script type="text/javascript" src="/components/angular-resource/angular-resource.js"></script>
 <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
@@ -38,8 +82,7 @@
 
 <script src="/js/app.js"></script>
 <script src="js/controllers/carsController.js"></script>
-
-
+<script src="js/service/carsServices.js"></script>
 
 
 </body>

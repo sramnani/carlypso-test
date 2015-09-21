@@ -1,5 +1,14 @@
-app.controller('carsController', function($scope) {
+app.controller('carsController', function ($scope, carsService) {
 
-    $scope.cars = 'cars data';
+    $scope.cars = {};
+    $scope.loadCars = function () {
+        carsService.getCars().then(function (data) {
+                $scope.cars = data;
 
+            },
+            function (error) {
+                $scope.error = "Error loading data";
+            });
+
+    };
 });
