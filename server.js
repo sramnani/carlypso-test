@@ -21,17 +21,22 @@ request(listingUri, function (error, response) {
         }
     });
 
-request(listCountUri, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-        listCount = body;
-    }
-});
+
 app.get('/', function (req, res) {
     res.sendfile(__dirname + '/client/views/index.html');
 
 });
-app.get('/cars',function(req,res){
 
+app.get('/cars',function(req,res){
+//Get cars from listing Api
+});
+app.get('/cars/count',function(req,res){
+    request(listCountUri, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            listCount = body;
+            res.send(listCount);
+        }
+    });
 
 });
 app.listen(9000, function() {
