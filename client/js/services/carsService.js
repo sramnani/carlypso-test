@@ -5,7 +5,9 @@ app.factory('carsService', ['$http', function($http) {
         getCars : function() {
             return $http.get('/cars');
         },
-
+        getCount : function() {
+            return $http.get('/cars/count');
+        },
 
         // these will work when more API routes are defined on the Node side of things
         // call to POST and create a new car
