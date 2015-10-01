@@ -1,23 +1,12 @@
-.carList
+.panel-body{
+    background-color:white;
 
-.carImg {
-    width: 90%;
-    border :1px solid rgba(101,101,101,.1);
 }
-
-.price {
-  font-size:28px;
-  text-align:center;
+body {
+    background-color:#f4f4f4;
 }
-
-.miles {
-    font-size:20px;
-    text-align:center;
-    color:gray;
-}
-.model {
-    font-size:20px;
-    text-align:center;
-    color:gray;
-    margin-top:10px;
+.panel {
+    -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0px 8px 11px 3px;
+    border:none;
 }

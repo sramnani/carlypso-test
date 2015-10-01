@@ -13,6 +13,7 @@ app.use(bodyParser());
 app.use('/js', express.static(__dirname + '/client/js'));
 app.use('/components', express.static(__dirname + '/client/components'));
 app.use('/css', express.static(__dirname + '/client/css'));
+app.use('/views', express.static(__dirname + '/client/views'));
 
 
 request(listingUri, function (error, response) {
