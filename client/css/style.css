@@ -10,3 +10,6 @@ body {
     box-shadow: rgba(0, 0, 0, 0.0470588) 0px 8px 11px 3px;
     border:none;
 }
+.right {
+    margin: 15px 25px 0 25px;
+}
