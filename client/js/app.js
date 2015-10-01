@@ -1,4 +1,5 @@
 var app = angular.module('app',['ui.router']);
+
 app.config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -15,4 +16,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 
+
+    app.config(['$httpProvider', function($httpProvider) {
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    }
+    ]);
 });
