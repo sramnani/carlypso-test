@@ -50,13 +50,13 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                     };
 
                     var deviceJSON = {
-                        "todd": "7a2f780bdb2153d4db8b9c4c6c496a0b6cb5608d",
-                        "anshuman": "6a573a2fca20abbe13f830e7c5c7f8c6995e26dc"
+                        "todd": "a1384f23650ea55c8a7786bb1463f925aaf87f05",
+                        "mike": "8a4452925605de90aca0799ef4afd20e1bcd3273"
                     };
 
                     var acidJSON = {
-                                "todd": "393b9108130f5c91af1595948d5f4a60dd171d73",
-                                "anshuman": "37cdc061ce2f07daba461a2a8b9b9b44b315d29c"
+                                "todd": "138a726d599c936418abb52510c5b8f7fd5904ed",
+                                "mike": "e3db3b2859338c30ac75300055593fd1cd364d21"
                     };
 
                     var policyJSON = {
