@@ -17,6 +17,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/devices',
             templateUrl: '/views/devices.html'
         })
+        .state('home.devicePolicy', {
+            url: '/devicePolicy',
+            templateUrl: '/views/device-policy.html'
+        })
 
 
 

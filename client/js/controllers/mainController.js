@@ -133,15 +133,22 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                             $scope.error = "Error in creating your bussiness!";
                             $state.go("home");
                         });
-                     } else if(urlType == "device.policies") {
+                     } else if(urlType == "device.policy") {
                         var unique_identifier = policyJSON[apiaiResponse["result"]["parameters"]["PolicyName"]];
-                        url = "https://cmtest.nuk9.com/api1/device_policy" + unique_identifier + "?api_key=" + api1key;
+                        url = "https://cmtest.nuk9.com/api1/device_policy/" + unique_identifier + "?api_key=" + api1key;
                         appsService.getData(url).then(function (data) {
                         $scope.loader = false;
-                        $scope.policies = data;
-                        console.log($scope.apps);
-
-                        // $scope.merchant.description=data.description;
+                        var groups = []
+                        for (i=0;i<data.groups.length;i++) {
+                        	groups.push(groupMap[data.groups[i]]);
+                        }
+                        if (groups.length == 0) {
+                        	groups = "N/A";
+                        } 
+                        data.groups = groups.join();
+                        $scope.devicePolicy = data;
+                        console.log($scope.devicePolicy);
+                        $state.go("home.devicePolicy");
                     }, function (error) {
                         $scope.error = "Error in creating your bussiness!";
                         $state.go("home");
