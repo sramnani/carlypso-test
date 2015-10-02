@@ -165,6 +165,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                         $scope.loader = false;
                         $scope.deviceCommand = data;
                         console.log($scope.apps);
+                        $state.go("home.deviceCommands");
 
                         // $scope.merchant.description=data.description;
                     }, function (error) {

@@ -21,9 +21,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: '/devicePolicy',
             templateUrl: '/views/device-policy.html'
         })
-
-
-
+        .state('home.deviceCommands', {
+            url: '/deviceCommands',
+            templateUrl: '/views/device-commands.html'
+        })
 
     app.config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
