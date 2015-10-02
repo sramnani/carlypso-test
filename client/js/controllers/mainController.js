@@ -7,6 +7,21 @@ app.controller('mainController', function ($scope,appsService, $http, $q) {
 	// // assuming we made the call to the server to get the processed data
 	var apiaiURL = "http://localhost:9080/upload?text=" + inputText;
 	var apiaiResponse = null;
+    $scope.speech = {
+        maxResults: 25,
+        continuous: true,
+        interimResults: true
+    };
+    $scope.$watch(
+        function ($scope) {
+
+            // This becomes the value we're "watching".
+            return ( "text is " + $scope.speech.value );
+        },
+        function (newValue) {
+            console.log(newValue);
+        }
+    );
 	appsService.getData(apiaiURL).then(function(data){
 		console.log(data);
 		apiaiResponse = data;
