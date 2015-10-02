@@ -50,8 +50,8 @@
         scope: {
           ngModel: '='
         },
-        template: "<div class=\"jsSpeechFactory-container\">\n<a href=\"\" class=\"jsSpeechFactory-btn\" ng-click=\"toggleStartStop()\">\n\n  <i class=\"fa fa-microphone fa-2x\" ng-hide=\"ngModel.recognizing\"></i>\n  <i class=\"fa fa-microphone-slash fa-2x\" ng-show=\"ngModel.recognizing\"></i>\n\n</a>\n<input type=\"text\" class=\"form-control\" ng-model=\"ngModel.value\"/>\n<p class=\"text-muted jsSpeechFactory-hint\" ng-bind-html-unsafe=\"speech.msg\"></p>\n</div>",
-        link: function(scope, element, attrs, ngModel) {
+        template: "<div class=\"jsSpeechFactory-container\">\n<a href=\"\" class=\"jsSpeechFactory-btn\" ng-click=\"toggleStartStop()\">\n\n  <i class=\"fa fa-microphone fa-2x\" ng-hide=\"ngModel.recognizing\"></i>\n  <i class=\"fa fa-microphone-slash fa-2x\" ng-show=\"ngModel.recognizing\"></i>\n\n</a>\n<a href=\"\" class=\"jsSpeechFactory-btn1\" ng-click=\"toggleKey()\">\n\n  <i class=\"fa fa-search fa-2x\" ng-hide=\"ngModel.recognizing\"></i>\n  <i class=\"fa fa-search fa-2x\" ng-show=\"ngModel.recognizing\"></i>\n\n</a>\n<input type=\"text\" class=\"form-control\" ng-model=\"ngModel.value\"/>\n<p class=\"text-muted jsSpeechFactory-hint\" ng-bind-html-unsafe=\"speech.msg\"></p>\n</div>",
+        link: function (scope, element, attrs, ngModel) {
           var $scope, init, onresult, onstart, recognition, recognizing, reset, safeApply, setIcon, setMsg, upgrade;
           $scope = scope;
           recognizing = false;
@@ -89,7 +89,7 @@
             reset();
             if ('webkitSpeechRecognition' in window) {
               recognition = new webkitSpeechRecognition();
-              recognition.continuous = true;
+              recognition.continuous = false;
               recognition.interimResults = true;
               recognition.onerror = onerror;
               recognition.onend = reset;
@@ -163,12 +163,17 @@
           $scope.toggleStartStop = function() {
             if ($scope.ngModel.recognizing) {
               recognition.stop();
+              $scope.ngModel.finalValue = $scope.ngModel.value;
               return reset();
             } else {
               recognition.start();
               $scope.ngModel.recognizing = true;
+              $scope.ngModel.lock = true;
               return setIcon('blocked');
             }
+          };
+          $scope.toggleKey = function() {
+            $scope.ngModel.finalValue = $scope.ngModel.value;
           };
           return init();
         }

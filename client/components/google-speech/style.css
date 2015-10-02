@@ -15,7 +15,13 @@
 .jsSpeechFactory-btn{
   display: block;
   position: absolute;
-  right: 5px;
+  right: 50px;
+  margin: 4px 0;
+}
+.jsSpeechFactory-btn1{
+  display: block;
+  position: absolute;
+  right: 2px;
   margin: 4px 0;
 }
 .jsSpeechFactory-icon {
