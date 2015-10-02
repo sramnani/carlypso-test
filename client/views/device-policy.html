@@ -1,10 +1,11 @@
-<div class="media-body">
+
     <div class="media lg">
         
     
             <a href="" class="pull-left">
-                <img class="media-object" src="{{ apps.url }}" style="height:130px;">
+                <div class="media-object"><i class="fa fa-shield fa-5x"></i></div>
             </a>
+        <div class="media-body">
             <h2 class="media-heading right">{{ devicePolicy.policy_name }}</h2>
             <div class="description right">{{ devicePolicy.description }}</div>
             <div class="field right"><label>Compliance Policy:</label>
@@ -18,7 +19,7 @@
             </div>
             
             <div class="field right">
-                <label>Mobile Security Settings:</label>
+                <label>Mobile Security Settings:</label></div>
                 <div class="field right">
                     <label>Scan Frequency:</label>
                     <span class="fieldControl">{{ devicePolicy.mobsec_setting.setting_scan_frequency }}</span>
@@ -33,7 +34,7 @@
                 </div>
                 
             </div>
-
+        </div>
             <!--begin: description-->
 
             <!--end: app properties-->
