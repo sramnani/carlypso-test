@@ -3,7 +3,7 @@
 app.controller('mainController', function ($scope,appsService, $http, $q) {
 
 	// TODO: reload this with speech data or input sentences from the controller
-	var inputText = "View Todd's device please";
+	var inputText = "open work file";
 	// // assuming we made the call to the server to get the processed data
 
     $scope.speech = {
