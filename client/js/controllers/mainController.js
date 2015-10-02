@@ -24,7 +24,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
 
             console.log(newValue);
             if (newValue !== undefined && newValue != "") {
-                var apiaiURL = "http://localhost:9080/upload?text=" + newValue;
+                var apiaiURL = "https://hack.nuk9.com/upload?text=" + newValue;
                 var apiaiResponse = null;
                 appsService.getData(apiaiURL).then(function (data) {
 
