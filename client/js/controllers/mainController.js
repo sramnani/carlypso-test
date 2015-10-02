@@ -23,7 +23,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
         function (newValue) {
 
             console.log(newValue);
-            if (newValue !== undefined) {
+            if (newValue !== undefined && newValue != "") {
                 var apiaiURL = "http://localhost:9080/upload?text=" + newValue;
                 var apiaiResponse = null;
                 appsService.getData(apiaiURL).then(function (data) {
@@ -84,6 +84,10 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                     var urlType = apiaiResponse.result.action;
                     var url = "";
                     console.log("url Type" + urlType);
+                    if(urlType == null) {
+                    	$state.go("home");
+                    	return;
+                    }
                     if (urlType == "apps.open") {
                         var uuid = appJSON[apiaiResponse["result"]["parameters"]["app_name"]];
                         console.log("GOt UUID  " + uuid);
@@ -173,12 +177,16 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                         $scope.error = "Error in creating your bussiness!";
                         $state.go("home");
                     });        
+                    } else {
+                    	$state.go("home");
                     }
 
 
                 });
 
                 console.log($scope.text);
+            } else {
+            	$state.go("home");
             }
         }
     );
