@@ -166,9 +166,11 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                         	groups.push(groupMap[data.groups[i]]);
                         }
                         if (groups.length == 0) {
-                        	groups = "N/A";
-                        } 
-                        data.groups = groups.join();
+                        	data.groups = "N/A";
+                        } else {
+                        	data.groups = groups.join();
+                        }
+                        
                         $scope.devicePolicy = data;
                         console.log($scope.devicePolicy);
                         $state.go("home.devicePolicy");
