@@ -126,7 +126,8 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                         appsService.getData(url).then(function (data) {
                             $scope.loader = false;
                             $scope.deviceDetails = data;
-                            console.log($scope.apps);
+                            console.log($scope.deviceDetails);
+                            $state.go("home.deviceDetails")
 
                             // $scope.merchant.description=data.description;
                         }, function (error) {
