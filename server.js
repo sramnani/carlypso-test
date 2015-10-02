@@ -11,7 +11,7 @@ app.use('/js', express.static(__dirname + '/client/js'));
 app.use('/components', express.static(__dirname + '/client/components'));
 app.use('/css', express.static(__dirname + '/client/css'));
 app.use('/views', express.static(__dirname + '/client/views'));
-
+app.use('/images', express.static(__dirname + '/client/images'));
 
 
 app.get('/', function (req, res) {

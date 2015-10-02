@@ -1,34 +1,36 @@
-<div class="media-body">
-    <div class="media lg">
-        
-    
-            <a href="" class="pull-left">
-                <img class="media-object" src="{{ apps.url }}" style="height:130px;">
-            </a>
-            <h2 class="media-heading right">{{ apps.metadata.title }}</h2>
-            <div class="description right">{{ apps.metadata.description }}</div>
-            <div class="field right"><label>App ID:</label>
-                <span class="fieldControl">{{ apps["bundle-identifier"] }}</span>
-            </div>
-            <div class="field right"><label>App OS:</label>
-                <span class="fieldControl">{{ apps.metadata.platform }}</span>
-            </div>
-            
-            <div class="field right"><label>App Policy:</label>
-                <span class="fieldControl">{{ apps.metadata.policy }}</span>
-            </div>
-            
-            <div class="field right"><label>Entitlements:</label>
-                <div class="field right"><label>Users:</label>
-                <span class="fieldControl">{{ apps.users }}</span>
-            </div>
-            <div class="field right"><label>Groups:</label>
-                <span class="fieldControl">{{ apps.groups }}</span>
-            </div>
-            </div>
+<div class="media lg">
 
-            <!--begin: description-->
 
-            <!--end: app properties-->
+    <a href="" class="pull-left">
+        <img class="media-object" src="{{apps.url}}" style="height:130px;">
+    </a>
+    <div class="media-body">
+        <h2 class="media-heading right">{{ apps.metadata.title }}</h2>
+
+    <div class="description right truncate">{{ apps.metadata.description }}</div>
+    <div class="field right"><label>App ID:</label>
+        <span class="fieldControl">{{ apps["bundle-identifier"] }}</span>
+    </div>
+    <div class="field right"><label>App OS:</label>
+        <span class="fieldControl">{{ apps.metadata.platform }}</span>
+    </div>
+
+    <div class="field right"><label>App Policy:</label>
+        <span class="fieldControl">{{ apps.metadata.policy }}</span>
+    </div>
+
+    <div class="field right"><label>Entitlements:</label></div>
+
+        <div class="field right"><label>Users:</label>
+            <span class="fieldControl">{{ apps.users }}</span>
         </div>
+        <div class="field right"><label>Groups:</label>
+            <span class="fieldControl">{{ apps.groups }}</span>
         </div>
+    </div>
+    </div>
+
+    <!--begin: description-->
+
+    <!--end: app properties-->
+</div>

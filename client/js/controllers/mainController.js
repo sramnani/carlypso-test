@@ -78,6 +78,21 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                     	4: "developers",
                     	5: "all"
                     }
+                    $scope.getAppURL = function(uuid){
+                        if(uuid == "uFdLzKclmUbuJXRi06mo2kdx3lf2pM57Qk1AYH4hVjAiF3qLolDGP1O6BCNxryzMKwf4TUZ3KDDtLT6k") {
+                            return ("/images/icon_NMS_110.png");
+                        }
+                        else if(uuid == "gh9KrfNvysynhMF1VL5xExlwuu5yFoGjwpO5Ynw0Te59Ioy9LwJDu4bl0V0G3l6acUJbQGtuymnbiMaV"){
+                            return ("/images/spotify.jpg");
+                        }
+                        else if(uuid == "1S7zAP3l68WT39sArSre5h1uVaHiq3YMTPdpZ8kHORJ0h6LIwStxEQC1pJmJIGpk6ECxbJ4j6EZqjQKq"){
+                            return ("/images/android_launcher48.png");
+                        }
+                        else if(uuid == "coKb6kgFm3C7BA9HUgIowGrP6YiLnNZD9xUBE7wNXMlZqpFMNU6jAd671jnWC8VtMmFqjEU8waQdRt3M"){
+                            return ("/images/work-file.png")
+                        }
+
+                    };
 
                     var api1key = "adT/RRQ=:HElnxlA6URBZ1KsI1g2TA1e1fKU=";
                     console.log(apiaiResponse.result.action);
@@ -90,6 +105,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                         url = "https://cmtest.nuk9.com/api1/apps/" + uuid + "/metadata?api_key=" + api1key;
                         // add code to call apiai with the text
                         appsService.getData(url).then(function (data) {
+                            console.log(data);
                             $scope.loader = false;
                             var entitlements = data["metadata"]["production-info"]["entitlements"];
                             var groups = [];
@@ -113,7 +129,9 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                             if(data["metadata"]["policy"] == null){
                             	data["metadata"]["policy"] = "N/A";	
                             }
+                            data["url"] = $scope.getAppURL(uuid);
                             $scope.apps = data;
+
                             console.log($scope.apps);
                             $state.go("home.apps");
                         }, function (error) {
