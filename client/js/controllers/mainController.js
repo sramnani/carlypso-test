@@ -54,6 +54,17 @@ app.controller('mainController', function ($scope,appsService, $http, $q) {
                         "anshuman": "6a573a2fca20abbe13f830e7c5c7f8c6995e26dc"
                     };
 
+                    var acidJSON = {
+                                "todd": "393b9108130f5c91af1595948d5f4a60dd171d73",
+                                "anshuman": "37cdc061ce2f07daba461a2a8b9b9b44b315d29c"
+                    };
+
+                    var policyJSON = {
+                                "wifi": "1",
+                                "enrollment": "2",
+                                "camera": "3"
+                    };
+
                     var api1key = "adT/RRQ=:HElnxlA6URBZ1KsI1g2TA1e1fKU=";
                     console.log(apiaiResponse.result.action);
                     var urlType = apiaiResponse.result.action;
@@ -85,7 +96,38 @@ app.controller('mainController', function ($scope,appsService, $http, $q) {
                         }, function (error) {
                             $scope.error = "Error in creating your bussiness!";
                         });
+                     } else if(urlType == "device.policies") {
+                        var unique_identifier = policyJSON[apiaiResponse["result"]["parameters"]["PolicyName"]];
+                        url = "https://cmtest.nuk9.com/api1/device_policy" + unique_identifier + "?api_key=" + api1key;
+                        appsService.getData(url).then(function (data) {
+                        $scope.loader = false;
+                        $scope.apps = data;
+                        console.log($scope.apps);
+
+                        // $scope.merchant.description=data.description;
+                    }, function (error) {
+                        $scope.error = "Error in creating your bussiness!";
+                    });
+                    } else if(urlType == "device.command") {
+                        console.log(apiaiResponse)
+                        var unique_command = apiaiResponse["result"]["parameters"]["Commands"];
+                        
+                        var unique_acid = acidJSON[apiaiResponse["result"]["parameters"]["PeopleNames"].toLowerCase()]
+                        
+                        url = "https://cmtest.nuk9.com/api1/devices/hack_" + unique_command + "/" + unique_acid + "?api_key=" + api1key;
+
+                        appsService.getData(url).then(function (data) {
+                        $scope.loader = false;
+                        $scope.apps = data;
+                        console.log($scope.apps);
+
+                        // $scope.merchant.description=data.description;
+                    }, function (error) {
+                        $scope.error = "Error in creating your bussiness!";
+                    });        
                     }
+
+
                 });
 
                 console.log($scope.text);
