@@ -44,7 +44,7 @@ var server = http.createServer(function(request, response) {
 
 });
 
-console.log("Listening on port 8000...");
+console.log("Listening on port 9080...");
 server.listen(9080);
 
 // cat ann_smith.wav | curl -v -X POST --data-binary @- -H "Transfer-Encoding: chunked" -H "Content-Type: audio/wav" http://localhost:8000/upload
