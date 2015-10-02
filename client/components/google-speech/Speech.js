@@ -174,6 +174,7 @@
           };
           $scope.toggleKey = function() {
             $scope.ngModel.finalValue = $scope.ngModel.value;
+            return reset();
           };
           return init();
         }

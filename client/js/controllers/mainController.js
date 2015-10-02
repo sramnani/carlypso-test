@@ -1,6 +1,6 @@
 
 
-app.controller('mainController', function ($scope,appsService, $http, $q) {
+app.controller('mainController', function ($scope,appsService, $http, $q, $state) {
 
 	// TODO: reload this with speech data or input sentences from the controller
 	var inputText = "open work file";
@@ -65,6 +65,20 @@ app.controller('mainController', function ($scope,appsService, $http, $q) {
                                 "camera": "3"
                     };
 
+                    var userMap = {
+                    	1: "anshuman",
+                    	2: "sonia",
+                    	3: "krishnan"
+                    };
+
+                    var groupMap = {
+                    	1: "administrators",
+                    	2: "publishers",
+                    	3: "managers",
+                    	4: "developers",
+                    	5: "all"
+                    }
+
                     var api1key = "adT/RRQ=:HElnxlA6URBZ1KsI1g2TA1e1fKU=";
                     console.log(apiaiResponse.result.action);
                     var urlType = apiaiResponse.result.action;
@@ -77,10 +91,31 @@ app.controller('mainController', function ($scope,appsService, $http, $q) {
                         // add code to call apiai with the text
                         appsService.getData(url).then(function (data) {
                             $scope.loader = false;
+                            var entitlements = data["metadata"]["production-info"]["entitlements"];
+                            var groups = [];
+                            var users = [];
+                            console.log(entitlements[0]);
+                            for (i=0; i<entitlements.length; i++) {
+                            	var entitlement = entitlements[i];
+                            	console.log(entitlements[i]);
+                            	if(entitlement.hasOwnProperty("users")) {
+                            		for(i=0; i<entitlement.users.length; i++){
+                            			users.push(userMap[entitlement.users[i]]);
+                            		}
+                            	} else if (entitlement.hasOwnProperty("groups")) {
+                            		for(i=0; i<entitlement.groups.length; i++){
+                            			groups.push(groupMap[entitlement.groups[i]]);
+                            		}
+                            	}
+                            }
+                            data["groups"] = groups.join();
+                            data["users"] = users.join();
+                            if(data["metadata"]["policy"] == null){
+                            	data["metadata"]["policy"] = "N/A";	
+                            }
                             $scope.apps = data;
                             console.log($scope.apps);
-
-                            // $scope.merchant.description=data.description;
+                            $state.go("home.apps");
                         }, function (error) {
                             $scope.error = "Error in creating your bussiness!";
                         });
@@ -89,7 +124,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q) {
                         url = "https://cmtest.nuk9.com/api1/devices/" + unique_identifier + "?api_key=" + api1key;
                         appsService.getData(url).then(function (data) {
                             $scope.loader = false;
-                            $scope.apps = data;
+                            $scope.deviceDetails = data;
                             console.log($scope.apps);
 
                             // $scope.merchant.description=data.description;
@@ -101,7 +136,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q) {
                         url = "https://cmtest.nuk9.com/api1/device_policy" + unique_identifier + "?api_key=" + api1key;
                         appsService.getData(url).then(function (data) {
                         $scope.loader = false;
-                        $scope.apps = data;
+                        $scope.policies = data;
                         console.log($scope.apps);
 
                         // $scope.merchant.description=data.description;
@@ -118,7 +153,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q) {
 
                         appsService.getData(url).then(function (data) {
                         $scope.loader = false;
-                        $scope.apps = data;
+                        $scope.deviceCommand = data;
                         console.log($scope.apps);
 
                         // $scope.merchant.description=data.description;
