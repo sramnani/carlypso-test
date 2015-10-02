@@ -1,4 +1,4 @@
-var app = angular.module('app',['ui.router']);
+var app = angular.module('app',['ui.router','jonniespratley.angularWebSpeechDirective']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
