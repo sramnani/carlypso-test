@@ -23,7 +23,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
         function (newValue) {
 
             console.log(newValue);
-            if (newValue !== undefined) {
+            if (newValue !== undefined && newValue != "") {
                 var apiaiURL = "http://localhost:9080/upload?text=" + newValue;
                 var apiaiResponse = null;
                 appsService.getData(apiaiURL).then(function (data) {
@@ -99,6 +99,10 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                     var urlType = apiaiResponse.result.action;
                     var url = "";
                     console.log("url Type" + urlType);
+                    if(urlType == null) {
+                    	$state.go("home");
+                    	return;
+                    }
                     if (urlType == "apps.open") {
                         var uuid = appJSON[apiaiResponse["result"]["parameters"]["app_name"]];
                         console.log("GOt UUID  " + uuid);
@@ -144,22 +148,30 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                         appsService.getData(url).then(function (data) {
                             $scope.loader = false;
                             $scope.deviceDetails = data;
-                            console.log($scope.apps);
+                            console.log($scope.deviceDetails);
+                            $state.go("home.deviceDetails")
 
                             // $scope.merchant.description=data.description;
                         }, function (error) {
                             $scope.error = "Error in creating your bussiness!";
                             $state.go("home");
                         });
-                     } else if(urlType == "device.policies") {
+                     } else if(urlType == "device.policy") {
                         var unique_identifier = policyJSON[apiaiResponse["result"]["parameters"]["PolicyName"]];
-                        url = "https://cmtest.nuk9.com/api1/device_policy" + unique_identifier + "?api_key=" + api1key;
+                        url = "https://cmtest.nuk9.com/api1/device_policy/" + unique_identifier + "?api_key=" + api1key;
                         appsService.getData(url).then(function (data) {
                         $scope.loader = false;
-                        $scope.policies = data;
-                        console.log($scope.apps);
-
-                        // $scope.merchant.description=data.description;
+                        var groups = []
+                        for (i=0;i<data.groups.length;i++) {
+                        	groups.push(groupMap[data.groups[i]]);
+                        }
+                        if (groups.length == 0) {
+                        	groups = "N/A";
+                        } 
+                        data.groups = groups.join();
+                        $scope.devicePolicy = data;
+                        console.log($scope.devicePolicy);
+                        $state.go("home.devicePolicy");
                     }, function (error) {
                         $scope.error = "Error in creating your bussiness!";
                         $state.go("home");
@@ -176,18 +188,23 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                         $scope.loader = false;
                         $scope.deviceCommand = data;
                         console.log($scope.apps);
+                        $state.go("home.deviceCommands");
 
                         // $scope.merchant.description=data.description;
                     }, function (error) {
                         $scope.error = "Error in creating your bussiness!";
                         $state.go("home");
                     });        
+                    } else {
+                    	$state.go("home");
                     }
 
 
                 });
 
                 console.log($scope.text);
+            } else {
+            	$state.go("home");
             }
         }
     );
