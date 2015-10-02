@@ -118,6 +118,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                             $state.go("home.apps");
                         }, function (error) {
                             $scope.error = "Error in creating your bussiness!";
+                            $state.go("home");
                         });
                     } else if (urlType == "device.details") {
                         var unique_identifier = deviceJSON[apiaiResponse["result"]["parameters"]["PeopleNames"].toLowerCase()];
@@ -130,6 +131,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                             // $scope.merchant.description=data.description;
                         }, function (error) {
                             $scope.error = "Error in creating your bussiness!";
+                            $state.go("home");
                         });
                      } else if(urlType == "device.policies") {
                         var unique_identifier = policyJSON[apiaiResponse["result"]["parameters"]["PolicyName"]];
@@ -142,6 +144,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                         // $scope.merchant.description=data.description;
                     }, function (error) {
                         $scope.error = "Error in creating your bussiness!";
+                        $state.go("home");
                     });
                     } else if(urlType == "device.command") {
                         console.log(apiaiResponse)
@@ -159,6 +162,7 @@ app.controller('mainController', function ($scope,appsService, $http, $q, $state
                         // $scope.merchant.description=data.description;
                     }, function (error) {
                         $scope.error = "Error in creating your bussiness!";
+                        $state.go("home");
                     });        
                     }
 
